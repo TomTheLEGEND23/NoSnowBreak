@@ -11,11 +11,15 @@ propagates.
 
 ## Installation
 
-1. Place this folder inside your world's `datapacks/` directory:
-   ```
-   saves/<world>/datapacks/NoSnowBreak/
-   ```
-2. Run `/reload` in-game. You'll see a confirmation in chat.
+Download the latest `NoSnowBreak-V*.zip` from the [Releases](../../releases/latest) page and drop it straight into your world's `datapacks/` directory — no extraction needed:
+
+```
+saves/<world>/datapacks/NoSnowBreak-V1.0.0.zip
+```
+
+Then run `/reload` in-game. You'll see a confirmation in chat.
+
+Alternatively, clone or copy the unzipped folder there instead — both work.
 
 ## How coverage works
 
