@@ -1,5 +1,7 @@
 {
   "values": [
+    {"id": "#forge:cables", "required": false},
+    {"id": "#c:cables", "required": false},
     "refinedstorage:cable",
     "ae2:me_cable_glass",
     "ae2:me_cable_covered",

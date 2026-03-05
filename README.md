@@ -17,32 +17,43 @@ propagates.
    ```
 2. Run `/reload` in-game. You'll see a confirmation in chat.
 
-## Protected blocks
+## How coverage works
 
-Blocks are grouped into three block tags you can find under `data/nosnowbreak/tags/blocks/`:
+Rather than requiring a long manual list, protection is layered:
 
-| Tag | Included mods |
-|-----|---------------|
-| `#nosnowbreak:cables` | Refined Storage, Applied Energistics 2, Mekanism, XNet |
-| `#nosnowbreak:pipes` | Mekanism (tubes / transporters), Thermal Series (fluxducts) |
-| `#nosnowbreak:catwalks` | Create (catwalk, railing), Immersive Engineering (scaffolding) |
+**1. Vanilla non-solid blocks — automatic, no config needed**  
+`#nosnowbreak:fragile_blocks` includes `#minecraft:snow_layer_cannot_survive_on`, the
+official Mojang tag for every block that can't hold a snow layer (fences, glass panes,
+iron bars, walls, rails, chains, etc.). All of these are protected out of the box, and
+Mojang keeps this tag up to date across game versions.
 
-`#nosnowbreak:fragile_blocks` references all three tags and is what the datapack actually checks.
+**2. Common mod convention tags — automatic when mods use them**  
+The sub-tags pull in `#forge:cables`, `#c:cables`, `#forge:pipes`, `#c:pipes`, and
+`#forge:platforms` / `#c:platforms` as **optional** references. Any mod that registers
+its blocks to these convention tags gets protected automatically — no editing required.
 
-### Adding your own blocks
+**3. Known mod blocks — explicit fallback**  
+For mods that don't use convention tags, specific block IDs are listed in three sub-tags:
 
-Edit the relevant sub-tag JSON (or `fragile_blocks.json` directly) and add any block ID:
+| Tag | Coverage |
+|-----|----------|
+| `#nosnowbreak:cables` | Refined Storage, AE2, Mekanism, XNet |
+| `#nosnowbreak:pipes` | Mekanism tubes/transporters, Thermal Series fluxducts |
+| `#nosnowbreak:catwalks` | Create catwalk/railing, Immersive Engineering scaffolding |
+
+### Adding a block that isn't covered
+
+Edit the relevant sub-tag JSON (or `fragile_blocks.json` directly) and add the block ID:
 
 ```json
 {
   "values": [
-    "refinedstorage:cable",
     "yourmod:your_block"
   ]
 }
 ```
 
-No other changes are needed — the scan function picks up the tag automatically.
+No other changes are needed.
 
 ## Compatibility
 

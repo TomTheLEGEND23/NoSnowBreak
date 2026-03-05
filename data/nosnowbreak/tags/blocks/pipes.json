@@ -1,5 +1,7 @@
 {
   "values": [
+    {"id": "#forge:pipes", "required": false},
+    {"id": "#c:pipes", "required": false},
     "mekanism:pressurized_tube",
     "mekanism:mechanical_pipe",
     "mekanism:logistical_transporter",

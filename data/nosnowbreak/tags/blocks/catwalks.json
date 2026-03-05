@@ -1,5 +1,7 @@
 {
   "values": [
+    {"id": "#forge:platforms", "required": false},
+    {"id": "#c:platforms", "required": false},
     "create:catwalk",
     "create:metal_railing",
     "immersiveengineering:wooden_scaffold",
