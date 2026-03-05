@@ -6,8 +6,16 @@ A Minecraft **1.20.1** datapack that stops snow from breaking fragile modded blo
 
 Snow layers (from snowfall or snow golems) send a block-update when they land.
 Thin modded blocks — cables, pipes, catwalks, railings — can't survive that update and
-pop off as items. This datapack detects and removes the snow layer before the update
-propagates.
+pop off as items.
+
+This datapack uses two layers of protection:
+
+1. **Proactive (primary):** All known fragile modded blocks are appended to the vanilla
+   `#minecraft:snow_layer_cannot_survive_on` tag so Minecraft's own snow-placement logic
+   refuses to place a snow layer on them at all — no block-update is ever fired.
+2. **Reactive (secondary):** A per-second scan still removes any stray snow layer found
+   directly above a fragile block, as a safety net for edge cases (e.g. snow placed
+   by command or by a mod that bypasses the normal placement check).
 
 ## Installation
 
@@ -26,10 +34,12 @@ Alternatively, clone or copy the unzipped folder there instead — both work.
 Rather than requiring a long manual list, protection is layered:
 
 **1. Vanilla non-solid blocks — automatic, no config needed**  
-`#nosnowbreak:fragile_blocks` includes `#minecraft:snow_layer_cannot_survive_on`, the
-official Mojang tag for every block that can't hold a snow layer (fences, glass panes,
-iron bars, walls, rails, chains, etc.). All of these are protected out of the box, and
-Mojang keeps this tag up to date across game versions.
+All modded fragile blocks (cables, pipes, catwalks) are appended to the vanilla
+`#minecraft:snow_layer_cannot_survive_on` tag, which Mojang's snow-placement code
+consults every time snow tries to land. This prevents snow from ever placing on these
+blocks, so no block-update is triggered and nothing breaks. Vanilla non-solid blocks
+(fences, glass panes, iron bars, walls, rails, chains, etc.) are already in this tag,
+so they are protected automatically.
 
 **2. Common mod convention tags — automatic when mods use them**  
 The sub-tags pull in `#forge:cables`, `#c:cables`, `#forge:pipes`, `#c:pipes`, and
@@ -45,6 +55,12 @@ For mods that don't use convention tags, specific block IDs are listed in three 
 | `#nosnowbreak:pipes` | Mekanism tubes/transporters, Thermal Series fluxducts |
 | `#nosnowbreak:catwalks` | Create catwalk/railing, Immersive Engineering scaffolding |
 
+**4. Per-second scan — safety net**  
+`#nosnowbreak:fragile_blocks` (which includes `#minecraft:snow_layer_cannot_survive_on`
+plus all three sub-tags above) is scanned every second. Any snow layer found directly
+above a listed block is removed as a fallback for edge cases such as snow placed by
+command or by mods that bypass the normal placement check.
+
 ### Adding a block that isn't covered
 
 Edit the relevant sub-tag JSON (or `fragile_blocks.json` directly) and add the block ID:
@@ -56,6 +72,8 @@ Edit the relevant sub-tag JSON (or `fragile_blocks.json` directly) and add the b
   ]
 }
 ```
+
+The block will automatically be included in both the vanilla `#minecraft:snow_layer_cannot_survive_on` tag (proactive prevention) and the per-second scan (reactive removal).
 
 No other changes are needed.
 

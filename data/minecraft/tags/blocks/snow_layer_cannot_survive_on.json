@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#nosnowbreak:cables",
+    "#nosnowbreak:pipes",
+    "#nosnowbreak:catwalks"
+  ]
+}
