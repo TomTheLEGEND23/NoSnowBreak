@@ -1,0 +1,15 @@
+{
+  "values": [
+    "mekanism:pressurized_tube",
+    "mekanism:mechanical_pipe",
+    "mekanism:logistical_transporter",
+    "mekanism:restrictive_transporter",
+    "mekanism:diversion_transporter",
+    "thermal:leadstone_fluxduct",
+    "thermal:hardened_fluxduct",
+    "thermal:redstone_fluxduct",
+    "thermal:signalum_fluxduct",
+    "thermal:resonant_fluxduct",
+    "thermal:cryo_fluxduct"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "values": [
+    "refinedstorage:cable",
+    "ae2:me_cable_glass",
+    "ae2:me_cable_covered",
+    "ae2:me_cable_smart",
+    "ae2:me_cable_dense_smart",
+    "ae2:me_cable_dense_covered",
+    "mekanism:universal_cable",
+    "xnet:netcable",
+    "xnet:connector"
+  ]
+}
