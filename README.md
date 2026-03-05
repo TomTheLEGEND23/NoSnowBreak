@@ -63,7 +63,7 @@ command or by mods that bypass the normal placement check.
 
 ### Adding a block that isn't covered
 
-Edit the relevant sub-tag JSON (or `fragile_blocks.json` directly) and add the block ID:
+Add the block ID to one of the three sub-tag JSON files (`cables.json`, `pipes.json`, or `catwalks.json`):
 
 ```json
 {
@@ -73,7 +73,9 @@ Edit the relevant sub-tag JSON (or `fragile_blocks.json` directly) and add the b
 }
 ```
 
-The block will automatically be included in both the vanilla `#minecraft:snow_layer_cannot_survive_on` tag (proactive prevention) and the per-second scan (reactive removal).
+Adding to a sub-tag ensures the block gets **both** layers of protection: it is included in `#minecraft:snow_layer_cannot_survive_on` (proactive — snow won't place on it at all) and in `#nosnowbreak:fragile_blocks` (reactive — the per-second scan will also remove stray snow above it).
+
+> **Note:** Adding a block directly to `fragile_blocks.json` only covers it with the reactive per-second scan. It will **not** receive proactive protection because `snow_layer_cannot_survive_on.json` references the three sub-tags, not `fragile_blocks.json` directly.
 
 No other changes are needed.
 
