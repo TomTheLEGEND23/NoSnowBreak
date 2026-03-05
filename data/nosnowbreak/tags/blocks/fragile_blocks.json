@@ -1,0 +1,8 @@
+{
+  "values": [
+    "#minecraft:snow_layer_cannot_survive_on",
+    "#nosnowbreak:cables",
+    "#nosnowbreak:pipes",
+    "#nosnowbreak:catwalks"
+  ]
+}
